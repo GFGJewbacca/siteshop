@@ -1,8 +1,9 @@
 // Import stylesheets
 import './style.css';
-import {sheetpiece} from 'sheetpiece.js'
+
 
 // Write Javascript code!
-let 
+
 const appDiv = document.getElementById('app');
-appDiv.innerHTML = `<h1>JS Starter</h1>`;
+let tester = "hello world"
+appDiv.innerHTML = `<h1>${tester}</h1>`
