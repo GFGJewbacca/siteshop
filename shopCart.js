@@ -32,6 +32,11 @@ class shopCart {
     //Removes the item from cart based on the index number
   }
 
+  clearCart() {
+    this.cart = [];
+    //Clears the cart and resets it.
+  }
+
   addCopies(item) {
     //Adds a copy to the item
     item.copies++;
@@ -52,6 +57,7 @@ class shopCart {
     this.cart.forEach((item) => {
       sum += item.price * item.copies;
     });
+    sum = sum.toFixed(2); //Trim the sum to be a neat dollar value
     return sum;
   }
 
@@ -69,12 +75,27 @@ class shopCart {
     let discount = 0;
     let cartTotal = this.sumTotal();
     let copies = this.totalCopies();
-    if (12 <= copies < 25) {
-      discount = (cartTotal * 100) / 5;
-    } else if (25 <= copies < 50) {
-      discount = (cartTotal * 100) / 10;
+    if (copies >= 12 && copies < 25) {
+      discount = (cartTotal / 100) * 5;
+      //5% discount between 12 and 24 copies
+    } else if (copies >= 25 && copies < 50) {
+      discount = (cartTotal / 100) * 10;
+      //10% discount between 25 and 49 copies
+    } else if (copies >= 50 && copies < 100) {
+      discount = (cartTotal / 100) * 15;
+      //15% discount between 50 and 99 copies
+    } else if (copies >= 100) {
+      discount = (cartTotal / 100) * 20;
+      //20% discount at 100+ copies
     }
+    discount = discount.toFixed(2); //Trim the discount to be a neat dollar value
     return discount;
+  }
+  salePrice() {
+    let salePrice = this.sumTotal() - this.savings();
+    salePrice = salePrice.toFixed(2);
+    //Trim the sale price to be a neat dollar value
+    return salePrice;
   }
 }
 export { shopCart, inventory, songItem };

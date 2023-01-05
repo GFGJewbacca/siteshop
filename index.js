@@ -8,6 +8,13 @@ shoppingcart = new shopCart('shoppingcart');
 shoppingcart.addToCart('Shalom_Rav');
 shoppingcart.addToCart('Oseh_Shalom');
 shoppingcart.addToCart(`T'filat_HaMakom_solo`);
+shoppingcart.cart[0].copies = 4;
+shoppingcart.cart[1].copies = 4;
+shoppingcart.cart[2].copies = 0;
 
 const appDiv = document.getElementById('app');
-//appDiv.innerHTML = shoppingcart.cart[0].copies;
+const appTester = document.getElementById('tester');
+const appPercent = document.getElementById('percent');
+appDiv.innerHTML = shoppingcart.sumTotal();
+appTester.innerHTML = shoppingcart.salePrice();
+appPercent.innerHTML = shoppingcart.savings();
