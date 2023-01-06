@@ -97,5 +97,10 @@ class shopCart {
     //Trim the sale price to be a neat dollar value
     return salePrice;
   }
+
+  displayCart() {
+    let output = "";
+    for(let i in this.cart)
+  }
 }
 export { shopCart, inventory, songItem };
