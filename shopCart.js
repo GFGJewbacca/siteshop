@@ -40,21 +40,6 @@ export class shopCart {
     this.saveCart();
   }
 
-  addCopies(item) {
-    //Adds a copy to the item
-    item.copies++;
-    this.saveCart();
-  }
-
-  removeCopies(item) {
-    /*First checks to make sure there are two or more copies of the item 
-    before removing a copy*/
-    if (item.copies >= 2) {
-      item.copies--;
-      this.saveCart();
-    }
-  }
-
   sumTotal() {
     /*Sums the total price of all items in the shopping cart based on
     the individual price of the item and the number of copies per item*/
@@ -107,9 +92,9 @@ export class shopCart {
   displayCart() {
     let output = '';
     this.cart.forEach((item) => {
-      output += '<tr>' + '<td>' + item.name + '</td>' + '<td>(' + item.price;
-      +')</td>' +
-        "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary'>-</button>";
+      output +=
+        '<tr>' + '<td> Name: ' + item.name + '</td>' + '<td>$' + item.price;
+      +')</td>' + '<td><button onclick="item.addCopies()">-</button>';
     });
     return output;
   }

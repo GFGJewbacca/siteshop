@@ -25,4 +25,17 @@ export class songItem {
     }
     return location;
   }
+
+  addCopies() {
+    //Adds a copy of the piece
+    this.copies++;
+  }
+
+  removeCopies() {
+    /*First checks to make sure there are two or more copies of the item 
+    before removing a copy*/
+    if (this.copies >= 2) {
+      item.copies--;
+    }
+  }
 }
