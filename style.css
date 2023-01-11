@@ -7,10 +7,8 @@ Author URI: http://www.mlpdesign.net/
 
 /* Global Settings */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css');
 body {
-  background: ;
-  /*
+  background: #000;
   background: -moz-linear-gradient(top, #33ccff 0%, #000000 75%, #000000 100%);
   background: -webkit-gradient(
     left top,
@@ -35,7 +33,7 @@ body {
   font-size: 14px;
   line-height: 18px;
   min-width: 600px;
-  background-repeat: repeat-x; */
+  background-repeat: repeat-x;
 }
 h1 {
   font-size: 20px;
@@ -90,12 +88,82 @@ a.storebutton {
   display: inline-block;
   border: solid;
 }
+button.storebutton {
+  font-size: 13px;
+  background: #000;
+  background: -moz-linear-gradient(top, #62cde4 0%, #38a0cc 75%, #3488ac 100%);
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, #62cde4),
+    color-stop(75%, #38a0cc),
+    color-stop(100%, #3488ac)
+  );
+  background: -webkit-linear-gradient(
+    top,
+    #62cde4 0%,
+    #38a0cc 75%,
+    #3488ac 100%
+  );
+  background: -o-linear-gradient(top, #62cde4 0%, #38a0cc 75%, #3488ac 100%);
+  background: -ms-linear-gradient(top, #62cde4 0%, #38a0cc 75%, #3488ac 100%);
+  background: linear-gradient(to bottom, #62cde4 0%, #38a0cc 75%, #3488ac 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#62cde4', endColorstr='#3488ac', GradientType=0 );
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  border: solid;
+}
 blockquote {
   background-color: inherit;
   color: #999;
   font: italic 16px 'Times New Roman', serif;
   border-left: 5px solid #205060;
   padding: 2px 15px;
+}
+
+/*Modal settings*/
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* Wrapper Settings */
@@ -205,13 +273,11 @@ caption {
   font-style: normal;
   text-decoration: none;
   color: #111;
-  font-weight: bold;
 }
 
 #banner h5 {
   font-size: 1.4em;
   text-decoration: none;
-  font-weight: bold;
 }
 
 #banner h5 em {
@@ -229,7 +295,7 @@ caption {
   font-size: 5.5vw;
   padding: 0;
   position: absolute;
-  top: 175px;
+  top: 195px;
   display: none;
   z-index: 1;
 }
@@ -487,6 +553,7 @@ ul#topnav li a:hover {
 }
 
 /* Begin responsive styles */
+
 @media screen and (max-width: 700px) {
   blockquote {
     font-size: 16px;
