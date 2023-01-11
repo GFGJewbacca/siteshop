@@ -35,7 +35,7 @@ var shoppingCart = (function () {
   var obj = {};
 
   // Add to cart
-  obj.addItemToCart = function (name, price, count) {
+  obj.addItemToCart = function (name, price, count, part) {
     for (var item in cart) {
       if (cart[item].name === name) {
         cart[item].count++;
@@ -43,7 +43,7 @@ var shoppingCart = (function () {
         return;
       }
     }
-    var item = new Item(name, price, count);
+    var item = new Item(name, price, count, part);
     cart.push(item);
     saveCart();
   };
@@ -79,6 +79,30 @@ var shoppingCart = (function () {
       }
     }
     saveCart();
+  };
+  /*Returns a file path to each item based on name
+        and what kind of piece it is; a solo piece, a choral piece
+        or a collection of pieces*/
+  obj.locate = function () {
+    let location = '';
+    let output = '';
+    for (var item in cart) {
+      switch (item.part) {
+        case 'solo':
+          location = `Full_scores/solo_pieces/${item.name}.pdf`;
+          break;
+
+        case 'choral':
+          location = `Full_scores/choral_pieces/${item.name}.pdf`;
+          break;
+
+        case 'collection':
+          location = `Full_scores/collections/${item.name}.zip`;
+          break;
+      }
+      output += "<a href = '" + location + "'>" + item.name + '</a><br>';
+    }
+    return output;
   };
 
   // Clear cart
@@ -142,7 +166,8 @@ $('.add-to-cart').click(function (event) {
   event.preventDefault();
   var name = $(this).data('name');
   var price = Number($(this).data('price'));
-  shoppingCart.addItemToCart(name, price, 1);
+  var part = $(this).data('part');
+  shoppingCart.addItemToCart(name, price, 1, part);
   displayCart();
 });
 
