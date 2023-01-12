@@ -90,7 +90,7 @@ export class shopCart {
   }
 
   displayCart() {
-    let output = '<table>';
+    let output = '<table id="cart-table">';
     this.cart.forEach((item) => {
       output +=
         '<tr>' +
@@ -99,8 +99,9 @@ export class shopCart {
         '</td>' +
         '<td> Price: $' +
         item.price +
-        '</td><td><button>+</button> ' +
-        item.copies;
+        '</td><td>Copies: <button id="minus">-</button> ' +
+        item.copies +
+        '<td><button id="plus">+</button>';
     });
     return output + '<table>';
   }
