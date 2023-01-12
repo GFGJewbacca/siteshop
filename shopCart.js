@@ -17,7 +17,7 @@ export class shopCart {
 
   addToCart(name) {
     let item = this.inventorySearch(name); //Finds the item in the inventory
-    this.cart[this.cart.length] = inventory[item];
+    this.cart.push(inventory[item]);
     this.saveCart();
     //Adds the item to the end of the cart
   }
@@ -90,13 +90,19 @@ export class shopCart {
   }
 
   displayCart() {
-    let output = '';
+    let output = '<table>';
     this.cart.forEach((item) => {
       output +=
-        '<tr>' + '<td> Name: ' + item.name + '</td>' + '<td>$' + item.price;
-      +')</td>' + '<td><button onclick="item.addCopies()">-</button>';
+        '<tr>' +
+        '<td> Name: ' +
+        item.name +
+        '</td>' +
+        '<td> Price: $' +
+        item.price +
+        '</td><td><button>+</button> ' +
+        item.copies;
     });
-    return output;
+    return output + '<table>';
   }
 
   // Save cart
