@@ -12,30 +12,17 @@ export class songItem {
     let location = '';
     switch (this.part) {
       case 'solo':
-        location = `Full_scores/solo_pieces/${this.name}.pdf`;
+        location = `Full scores/solo_pieces/${this.name}.pdf`;
         break;
 
       case 'choral':
-        location = `Full_scores/choral_pieces/${this.name}.pdf`;
+        location = `Full scores/choral_pieces/${this.name}.pdf`;
         break;
 
       case 'collection':
-        location = `Full_scores/collections/${this.name}.zip`;
+        location = `Full scores/collections/${this.name}.zip`;
         break;
     }
     return location;
-  }
-
-  addCopies() {
-    //Adds a copy of the piece
-    this.copies++;
-  }
-
-  removeCopies() {
-    /*First checks to make sure there are two or more copies of the item 
-    before removing a copy*/
-    if (this.copies >= 2) {
-      item.copies--;
-    }
   }
 }

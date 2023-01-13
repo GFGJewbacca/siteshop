@@ -80,30 +80,6 @@ var shoppingCart = (function () {
     }
     saveCart();
   };
-  /*Returns a file path to each item based on name
-        and what kind of piece it is; a solo piece, a choral piece
-        or a collection of pieces*/
-  obj.locate = function () {
-    let location = '';
-    let output = '';
-    for (var item in cart) {
-      switch (item.part) {
-        case 'solo':
-          location = `Full_scores/solo_pieces/${item.name}.pdf`;
-          break;
-
-        case 'choral':
-          location = `Full_scores/choral_pieces/${item.name}.pdf`;
-          break;
-
-        case 'collection':
-          location = `Full_scores/collections/${item.name}.zip`;
-          break;
-      }
-      output += "<a href = '" + location + "'>" + item.name + '</a><br>';
-    }
-    return output;
-  };
 
   // Clear cart
   obj.clearCart = function () {

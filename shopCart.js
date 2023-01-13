@@ -22,14 +22,19 @@ export class shopCart {
     //Adds the item to the end of the cart
   }
 
-  removeFromCart(name) {
+  cartSearch(name) {
     let i = this.cart.findIndex((cartItem) => cartItem.name === name);
     //Finds the item in the shopping cart and sets the index number
     if (i === -1) {
       //In case the item wasn't found
       return;
     }
-    this.cart.splice(i, 1);
+    return i;
+  }
+
+  removeFromCart(name) {
+    let item = this.cartSearch(name);
+    this.cart.splice(item, 1);
     //Removes the item from cart based on the index number
     this.saveCart();
   }
@@ -38,6 +43,21 @@ export class shopCart {
     this.cart = [];
     //Clears the cart and resets it.
     this.saveCart();
+  }
+
+  addCopies(name) {
+    //Adds a copy of the piece
+    let item = this.cartSearch(name);
+    this.cart[item].copies++;
+  }
+
+  removeCopies(name) {
+    /*First checks to make sure there are two or more copies of the item 
+    before removing a copy*/
+    let item = this.cartSearch(name);
+    if (this.cart[item].copies >= 2) {
+      item.copies--;
+    }
   }
 
   sumTotal() {
@@ -90,20 +110,31 @@ export class shopCart {
   }
 
   displayCart() {
-    let output = '<table id="cart-table">';
+    let output =
+      '<table class="center" id="cart-table"><th>Name</th><th>Price</th><th colspan="3">Copies</th><th>Type</th>';
     this.cart.forEach((item) => {
       output +=
         '<tr>' +
-        '<td> Name: ' +
+        '<td>' +
         item.name +
         '</td>' +
-        '<td> Price: $' +
+        '<td>$' +
         item.price +
-        '</td><td>Copies: <button id="minus">-</button> ' +
+        '</td><td><button class="minus" data-name="' +
+        item.name +
+        '">-</button></td><td>' +
         item.copies +
-        '<td><button id="plus">+</button>';
+        '</td><td><button class="plus" data-name="' +
+        item.name +
+        '">+</button></td>' +
+        '<td>' +
+        item.part +
+        '</td>' +
+        '<td><button class="remove" data-name="' +
+        item.name +
+        '">Remove from Cart</button></td>';
     });
-    return output + '<table>';
+    return output + '</table>';
   }
 
   // Save cart
