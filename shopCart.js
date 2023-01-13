@@ -5,9 +5,12 @@ export class shopCart {
     this.id = id;
   }
 
-  inventorySearch(name) {
+  inventorySearch(name, part) {
     //Searches through the inventory array for the item and returns an index number
-    let i = inventory.findIndex((inventoryItem) => inventoryItem.name === name);
+    let i = inventory.findIndex(
+      (inventoryItem) =>
+        inventoryItem.name === name && inventoryItem.part === part
+    );
     if (i === -1) {
       //In case the item wasn't found
       return;
@@ -15,15 +18,10 @@ export class shopCart {
     return i;
   }
 
-  addToCart(name) {
-    let item = this.inventorySearch(name); //Finds the item in the inventory
-    this.cart.push(inventory[item]);
-    this.saveCart();
-    //Adds the item to the end of the cart
-  }
-
-  cartSearch(name) {
-    let i = this.cart.findIndex((cartItem) => cartItem.name === name);
+  cartSearch(name, part) {
+    let i = this.cart.findIndex(
+      (cartItem) => cartItem.name === name && cartItem.part === part
+    );
     //Finds the item in the shopping cart and sets the index number
     if (i === -1) {
       //In case the item wasn't found
@@ -32,8 +30,15 @@ export class shopCart {
     return i;
   }
 
-  removeFromCart(name) {
-    let item = this.cartSearch(name);
+  addToCart(name, part) {
+    let item = this.inventorySearch(name, part); //Finds the item in the inventory
+    this.cart.push(inventory[item]);
+    this.saveCart();
+    //Adds the item to the end of the cart
+  }
+
+  removeFromCart(name, part) {
+    let item = this.cartSearch(name, part);
     this.cart.splice(item, 1);
     //Removes the item from cart based on the index number
     this.saveCart();
@@ -45,18 +50,18 @@ export class shopCart {
     this.saveCart();
   }
 
-  addCopies(name) {
+  addCopies(name, part) {
     //Adds a copy of the piece
-    let item = this.cartSearch(name);
+    let item = this.cartSearch(name, part);
     this.cart[item].copies++;
   }
 
-  removeCopies(name) {
+  removeCopies(name, part) {
     /*First checks to make sure there are two or more copies of the item 
     before removing a copy*/
-    let item = this.cartSearch(name);
+    let item = this.cartSearch(name, part);
     if (this.cart[item].copies >= 2) {
-      item.copies--;
+      this.cart[item].copies--;
     }
   }
 
@@ -122,16 +127,22 @@ export class shopCart {
         item.price +
         '</td><td><button class="minus" data-name="' +
         item.name +
+        '" data-part="' +
+        item.part +
         '">-</button></td><td>' +
         item.copies +
         '</td><td><button class="plus" data-name="' +
         item.name +
+        '" data-part="' +
+        item.part +
         '">+</button></td>' +
         '<td>' +
         item.part +
         '</td>' +
-        '<td><button class="remove" data-name="' +
+        '<td><button class="removeFromCart" data-name="' +
         item.name +
+        '" data-part="' +
+        item.part +
         '">Remove from Cart</button></td>';
     });
     return output + '</table>';
