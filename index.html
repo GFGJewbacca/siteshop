@@ -1,12 +1,531 @@
 <!DOCTYPE html>
-<body>
-  <script
-    type="text/javascript"
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-  ></script>
-  <div>
-    <span id="show-cart"></span><br />
-    You saved: <span id="savings"></span><br>
-    Total price: <span id="total-price"></span>
-  </div>
-</body>
+<html lang="en">
+  <head>
+    <!--script for store -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    ></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Cantor Rick Lawrence</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="Description"
+      lang="en"
+      content="open source x/html and css templates"
+    />
+    <meta
+      name="description"
+      lang="en"
+      content="Homepage, Sheet music store, Recordings, Divrei Torah and Resume for Cantor Rick Lawrence"
+    />
+    <meta name="author" content="mlp design" />
+    <meta name="author" content="Cantor Rick Lawrence" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="Jewish music, Judaism, Jewish, Cantor, Rick, Lawrence, Resume, Sheet Music"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <style>
+    /*making images in the sheet music table responsive*/
+    img {
+      max-width: 300px;
+      height: auto;
+      width: 100%;
+    }
+  </style>
+  <body>
+    <!--start wrapper-->
+    <div id="wrapper">
+      <!--start body-->
+      <div id="body">
+        <!--start header-->
+        <div id="banner">
+          <div id="coverphoto">
+            <img src="headshot.jpg" title="headshot" alt="headshot" />
+          </div>
+          <h1>Cantor Rick Lawrence <em>M.J.Ed</em></h1>
+          <h5>
+            <em
+              >“It is not upon you to finish the work, and neither are you free
+              to abstain from it.” <br /><br />-Pirkei Avot 2:16</em
+            >
+          </h5>
+          <!-- menu -->
+          <label for="show-menu" class="responsive">&#9776;</label>
+          <input type="checkbox" id="show-menu" role="button" />
+          <ul id="topnav">
+            <li><a href="index.html">About me</a></li>
+            <li><a href="recordings.html">Recordings</a></li>
+            <li><a class="active">Sheet music</a></li>
+            <li><a href="divreitorah.html">Divrei Torah</a></li>
+            <li><a href="contactresume.html">Contact and Resume</a></li>
+          </ul>
+          <!-- end menu -->
+        </div>
+        <!--start containter-->
+        <div id="container">
+          <!--Button to open the modal window for the cart-->
+          <div>
+            <button class="storebutton" id="openModal">Open Cart</button>
+          </div>
+          <!--The modal window itself/shopping cart-->
+          <div id="modalWindow" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content" id="show-cart">
+              <span class="close">&times;</span>
+            </div>
+          </div>
+          <!--start content-->
+          <div id="content">
+            By purchasing sheet music, you agree to be subscribed to a mailing
+            list for future updates.<br /><br />
+            <!--post T'filat HaMakom table-->
+            <div class="item">
+              <table class="center">
+                <caption>
+                  <i>T'filat HaMakom - This Place's Prayer</i
+                  ><br /><br />A collection of music for Shabbat Evening
+                </caption>
+                <!--first row; Ahavat Olam, Barchu, and L'cha Dodi-->
+                <tr>
+                  <!--listing Ahavat Olam-->
+                  <td>
+                    <a href="Sheet-music-previews/Ahavat%20Olam%20preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/Ahavat%20Olam%20preview.jpg" /></a
+                    ><br />
+                    Ahavat Olam $4.00
+                    <br />
+                    <!--Ahavat Olam "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/IaFGd"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                    <!--Ahavat Olam clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/Ahavat-Olam.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                  <!--listing Barchu-->
+                  <td>
+                    <a href="Sheet-music-previews/Barchu-Melody-preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/Barchu-Melody-preview.jpg"
+                        style /></a
+                    ><br />
+                    Barchu $4.00
+                    <br />
+                    <!--Barchu "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/gX5tF"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                    <!--Barchu clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/Barchu.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                  <!--listing L'cha Dodi solo-->
+                  <td>
+                    <a href="Sheet-music-previews/L'cha%20dodi%20melody.jpg"
+                      ><img
+                        src="Sheet-music-previews/L'cha%20dodi%20melody.jpg" /></a
+                    ><br />
+                    L'cha Dodi $4.00
+                    <br />
+                    <!--L'cha Dodi solo "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/j81nI"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                    <!--L'cha Dodi clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/Barchu.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                </tr>
+                <!--second row: L'chu N'ran'na, Mi Chamocha, Oseh Shalom-->
+                <tr>
+                  <!--listing L'chu N'ran'na-->
+                  <td>
+                    <a href="Sheet-music-previews/L'chu_n'ran'na.jpg"
+                      ><img src="Sheet-music-previews/L'chu_n'ran'na.jpg" /></a
+                    ><br />
+                    L'chu N'ran'na $4.00
+                    <br />
+                    <!--L'chu N'ran'na "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/wZayE"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                    <!--L'chu N'ran'na clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/L'chu-N'ran'na.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                  <!--listing Mi Chamocha-->
+                  <td>
+                    <a href="Sheet-music-previews/Mi_Chamocha%20preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/Mi_Chamocha%20preview.jpg" /></a
+                    ><br />
+                    Mi Chamocha $4.00
+                    <br />
+                    <!--Mi Chamocha "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/L9l4y"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                    <!--Mi Chamocha clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/Mi-Chamocha.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                  <!--listing Oseh Shalom-->
+                  <td>
+                    <a
+                      href="Sheet-music-previews/Oseh_Shalom-Melody-preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/Oseh_Shalom-Melody-preview.jpg" /></a
+                    ><br />
+                    Oseh Shalom $4.00
+                    <br />
+                    <!--Oseh Shalom "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/F708s"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                    <!--Oseh Shalom clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/Oseh-Shalom.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                </tr>
+                <!--third row: Shalom Rav, Sh'ma, V'sham'ru-->
+                <tr>
+                  <!--Listing Shalom Rav-->
+                  <td>
+                    <a href="Sheet-music-previews/Shalom_Rav-Melody-preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/Shalom_Rav-Melody-preview.jpg" /></a
+                    ><br />
+                    Shalom Rav $4.00
+                    <br />
+                    <!--Shalom Rav "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/TU3eu"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to buy</a
+                    >
+                    <!--Shalom Rav clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/Shalom-Rav.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                  <!--listing Sh'ma-->
+                  <td>
+                    <a href="Sheet-music-previews/Sh'ma%20preview.jpg"
+                      ><img src="Sheet-music-previews/Sh'ma%20preview.jpg" /></a
+                    ><br />
+                    Sh'ma $4.00
+                    <br />
+                    <!--Sh'ma "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/rkVPX"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                    <!--Sh'ma clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/Sh'ma.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                  <!--Listing V'sham'ru-->
+                  <td>
+                    <a href="Sheet-music-previews/V'sham'ru%20preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/V'sham'ru%20preview.jpg" /></a
+                    ><br />
+                    V'sham'ru $4.00
+                    <br />
+                    <!--V'sham'ru "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/KRTdu"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                    <!--V'sham'ru clip button-->
+                    <a
+                      href="Tfilat-HaMakom-recordings/V'sham'ru.mp3"
+                      class="storebutton"
+                      >Hear a Recording</a
+                    >
+                  </td>
+                </tr>
+                <!--fourth row:T'filat HaMakom solo, T'filat HaMakom solo & choir-->
+                <tr>
+                  <td>
+                    <!--listing T'filat HaMakom solo-->
+                    <a
+                      href="Sheet-music-previews/Tfilat%20HaMakom%20solo%20title.jpg"
+                      ><img
+                        src="Sheet-music-previews/Tfilat%20HaMakom%20solo%20title.jpg" /></a
+                    ><br />
+                    T'filat HaMakom - solo collection
+                    <del>$36.00</del> $30.00<br />
+                    <!--T'filat HaMakom solo "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/beZG3"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                  </td>
+                  <!--listing T'filat HaMakom solo + choir-->
+                  <td>
+                    <a
+                      href="Sheet-music-previews/Tfilat%20HaMakom%20solo%20and%20choir%20title.jpg"
+                      ><img
+                        src="Sheet-music-previews/Tfilat%20HaMakom%20solo%20and%20choir%20title.jpg" /></a
+                    ><br />
+                    T'filat HaMakom solo &amp; choir collection
+                    <del>$52.00</del> $45.00
+                    <br />
+                    <!--T'filat HaMakom solo+choir "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/v0D4t"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!--end of T'filat HaMakom table-->
+            <!--post Choral music table-->
+            <div class="item">
+              <table class="center">
+                <caption>
+                  Music for Ensembles
+                </caption>
+                <!--first row: Barchu SATB, Hal'luyah SATB, L'cha Dodi SATB-->
+                <tr>
+                  <td>
+                    <!--listing Barchu SATB-->
+                    <a href="Sheet-music-previews/Barchu%20SATB%20preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/Barchu%20SATB%20preview.jpg" /></a
+                    ><br />
+                    Barchu - SATB $4.00
+                    <br />
+                    <!--Barchu "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/HacQb"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                  </td>
+                  <!--listing Hal'luyah-->
+                  <td>
+                    <a href="Sheet-music-previews/Hal'luyah%20preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/Hal'luyah%20preview.jpg" /></a
+                    ><br />
+                    Hal'luyah - SATB $4.00
+                    <br />
+                    <!--Hal'luyah "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/WYPmv"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                  </td>
+                  <!--listing L'cha Dodi SATB-->
+                  <td>
+                    <a href="Sheet-music-previews/L'cha_Dodi%20preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/L'cha_Dodi%20preview.jpg" /></a
+                    ><br />
+                    L'cha Dodi - SATB $4.00
+                    <br />
+                    <!--L'cha Dodi SATB "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/MATi2"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                  </td>
+                </tr>
+                <!--second row: Oseh Shalom, SATB, Pulled Under, Shalom Rav SATB-->
+                <!--listing Oseh Shalom SATB-->
+                <td>
+                  <a href="Sheet-music-previews/Oseh_Shalom%20preview.jpg"
+                    ><img
+                      src="Sheet-music-previews/Oseh_Shalom%20preview.jpg" /></a
+                  ><br />
+                  Oseh Shalom - SATB $4.00
+                  <br />
+                  <!--Oseh Shalom "Store page" button-->
+                  <a
+                    href="https://payhip.com/b/5faDs"
+                    class="storebutton"
+                    target="_blank"
+                    >Click Here to Buy</a
+                  >
+                </td>
+                <!--listing Pulled Under-->
+                <td>
+                  <a href="Sheet-music-previews/Pulled_Under%20preview.jpg"
+                    ><img
+                      src="Sheet-music-previews/Pulled_Under%20preview.jpg" /></a
+                  ><br />
+                  Pulled Under - soprano &amp; baritone soloists, 2-part choir
+                  and piano $4.00
+                  <br />
+                  <!--Pulled Under "Store page" button-->
+                  <a
+                    href="https://payhip.com/b/clv0E"
+                    class="storebutton"
+                    target="_blank"
+                    >Click Here to Buy</a
+                  >
+                </td>
+                <!--listing Shalom Rav SATB-->
+                <td>
+                  <a href="Sheet-music-previews/Shalom_Rav-preview.jpg"
+                    ><img
+                      src="Sheet-music-previews/Shalom_Rav-preview.jpg" /></a
+                  ><br />
+                  Shalom Rav - SATB $4.00
+                  <br />
+                  <!--Shalom Rav "Store page" button-->
+                  <a
+                    href="https://payhip.com/b/jWAv8"
+                    class="storebutton"
+                    target="_blank"
+                    >Click Here to Buy</a
+                  >
+                </td>
+                <!-- third row: Ufros Aleinu, Choral collection-->
+                <tr>
+                  <!--listing Ufros Aleinu-->
+                  <td>
+                    <a href="Sheet-music-previews/Ufros_Aleinu%20preview.jpg"
+                      ><img
+                        src="Sheet-music-previews/Ufros_Aleinu%20preview.jpg" /></a
+                    ><br />
+                    Ufros Aleinu - SATB $4.00
+                    <br />
+                    <!--Ufros Aleinu "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/s9PW7"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                  </td>
+                  <!--listing choral collection-->
+                  <td>
+                    <a href="Sheet-music-previews/Choral%20collection.jpg"
+                      ><img
+                        src="Sheet-music-previews/Choral%20collection.jpg" /></a
+                    ><br />
+                    Choral collection <del>$28.00</del> $25.00
+                    <br />
+                    <!--Choral collection "Store page" button-->
+                    <a
+                      href="https://payhip.com/b/ijTQY"
+                      class="storebutton"
+                      target="_blank"
+                      >Click Here to Buy</a
+                    >
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <!--end of Choral music table-->
+          </div>
+          <!--end of content-->
+        </div>
+        <!--end of container-->
+      </div>
+      <!--end of body-->
+      <!--start footer-->
+      <div id="footer">
+        <span class="left">
+          &copy; 2022 Cantor Rick Lawrence. All rights reserved.
+          <a href="https://pngtree.com/so/Social"
+            >Social png from pngtree.com/</a
+          ></span
+        >
+        <span class="right"
+          ><!-- <a href="mailto:cantor.rick.lawrence@gmail.com">Contact</a>  | -->
+          <a href="sitemap.html">Site Map</a></span
+        >
+        <p class="show-footer">
+          &copy; 2022 Cantor Rick Lawrence. All rights reserved.<br /><!-- <a href="mailto:cantor.rick.lawrence@gmail.com">Contact</a>  |-->
+          <a href="sitemap.html">Site Map</a>
+        </p>
+      </div>
+      <!--end of footer-->
+    </div>
+    <!--end of wrapper-->
+    <!--start credits-->
+    <!--//Under CC-NC 3.0, this portion must be left intact and must not be hidden.//-->
+    <div id="credits">
+      <span
+        ><a
+          href="http://www.mlpdesign.net"
+          title="CSS &amp; HTML by MLP Design.net"
+          >CSS &amp; HTML</a
+        >
+        by MLP Design<br />Licensed under
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"
+          >Creative Commons Attribution-NonCommercial 3.0</a
+        >.</span
+      >
+    </div>
+
+    <!--end of credits-->
+  </body>
+</html>
