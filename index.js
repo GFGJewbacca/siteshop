@@ -23,7 +23,7 @@ $('#show-cart').on('click', '.minus', function (event) {
   shoppingCart.removeCopies(name, part);
   shoppingCart.displayCart();
 });
-$('#show-cart').on('click', '.removeFromCart', function (event) {
+$('#show-cart').on('click', '.remove', function (event) {
   let name = $(this).data('name');
   let part = $(this).data('part');
   shoppingCart.removeFromCart(name, part);

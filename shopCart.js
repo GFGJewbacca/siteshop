@@ -139,7 +139,7 @@ export class shopCart {
         '<td>' +
         item.part +
         '</td>' +
-        '<td><button class="removeFromCart" data-name="' +
+        '<td><button class="remove" data-name="' +
         item.name +
         '" data-part="' +
         item.part +
