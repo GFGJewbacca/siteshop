@@ -4,6 +4,11 @@ let shoppingCart = new shopCart();
 
 //Triggers and events
 
+//Loading the cart
+if (sessionStorage.getItem('shoppingCart') != null) {
+  loadCart();
+}
+
 //Adding copies
 $('#show-cart').on('click', '.plus', function (event) {
   let name = $(this).data('name');
@@ -31,6 +36,11 @@ $('#show-cart').on('click', '.remove', function (event) {
   let part = $(this).data('part');
   shoppingCart.removeFromCart(name, part);
   shoppingCart.displayCart();
+});
+
+//Open&close the cart
+$('#openCart').click(function () {
+  $('#show-cart').slideToggle('slow');
 });
 
 //Displaying the necessary parts of the cart
