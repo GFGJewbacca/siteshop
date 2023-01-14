@@ -12,29 +12,29 @@ if (sessionStorage.getItem('shoppingCart') != null) {
 //Adding copies
 $('#show-cart').on('click', '.plus', function (event) {
   let name = $(this).data('name');
-  let part = $(this).data('part');
-  shoppingCart.addCopies(name, part);
+  let type = $(this).data('type');
+  shoppingCart.addCopies(name, type);
   shoppingCart.displayCart();
 });
 //Removing copies
 $('#show-cart').on('click', '.minus', function (event) {
   let name = $(this).data('name');
-  let part = $(this).data('part');
-  shoppingCart.removeCopies(name, part);
+  let type = $(this).data('type');
+  shoppingCart.removeCopies(name, type);
   shoppingCart.displayCart();
 });
 //Adding to the cart
-$('#show-cart').on('click', '.addToCart', function (event) {
+$('#show-cart').on('click', '.add-to-cart', function (event) {
   let name = $(this).data('name');
-  let part = $(this).data('part');
-  shoppingCart.addToCart(name, part);
+  let type = $(this).data('type');
+  shoppingCart.addToCart(name, type);
   shoppingCart.displayCart();
 });
 //Removing from the cart
 $('#show-cart').on('click', '.remove', function (event) {
   let name = $(this).data('name');
-  let part = $(this).data('part');
-  shoppingCart.removeFromCart(name, part);
+  let type = $(this).data('type');
+  shoppingCart.removeFromCart(name, type);
   shoppingCart.displayCart();
 });
 

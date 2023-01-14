@@ -1,8 +1,8 @@
 export class songItem {
-  constructor(name, price, part, copies) {
+  constructor(name, price, type, copies) {
     this.name = name;
     this.price = price;
-    this.part = part;
+    this.type = type;
     this.copies = copies;
   }
   locate() {
@@ -10,7 +10,7 @@ export class songItem {
       and what kind of piece it is; a solo piece, a choral piece
       or a collection of pieces*/
     let location = '';
-    switch (this.part) {
+    switch (this.type) {
       case 'solo':
         location = `Full scores/solo_pieces/${this.name}.pdf`;
         break;

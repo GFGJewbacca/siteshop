@@ -18,9 +18,9 @@ export class shopCart {
     return i;
   }
 
-  cartSearch(name, part) {
+  cartSearch(name, type) {
     let i = this.cart.findIndex(
-      (cartItem) => cartItem.name === name && cartItem.part === part
+      (cartItem) => cartItem.name === name && cartItem.part === type
     );
     //Finds the item in the shopping cart and sets the index number
     if (i === -1) {
@@ -30,15 +30,15 @@ export class shopCart {
     return i;
   }
 
-  addToCart(name, part) {
-    let item = this.inventorySearch(name, part); //Finds the item in the inventory
+  addToCart(name, type) {
+    let item = this.inventorySearch(name, type); //Finds the item in the inventory
     this.cart.push(inventory[item]);
     this.saveCart();
     //Adds the item to the end of the cart
   }
 
-  removeFromCart(name, part) {
-    let item = this.cartSearch(name, part);
+  removeFromCart(name, type) {
+    let item = this.cartSearch(name, type);
     this.cart.splice(item, 1);
     //Removes the item from cart based on the index number
     this.saveCart();
@@ -50,16 +50,16 @@ export class shopCart {
     this.saveCart();
   }
 
-  addCopies(name, part) {
+  addCopies(name, type) {
     //Adds a copy of the piece
-    let item = this.cartSearch(name, part);
+    let item = this.cartSearch(name, type);
     this.cart[item].copies++;
   }
 
-  removeCopies(name, part) {
+  removeCopies(name, type) {
     /*First checks to make sure there are two or more copies of the item 
     before removing a copy*/
-    let item = this.cartSearch(name, part);
+    let item = this.cartSearch(name, type);
     if (this.cart[item].copies >= 2) {
       this.cart[item].copies--;
     }
@@ -115,36 +115,41 @@ export class shopCart {
   }
 
   displayCart() {
-    let output =
-      '<table class="center" id="cart-table"><th>Name</th><th>Price</th><th colspan="3">Copies</th><th>Type</th>';
-    this.cart.forEach((item) => {
-      output +=
-        '<tr>' +
-        '<td>' +
-        item.name +
-        '</td>' +
-        '<td>$' +
-        item.price +
-        '</td><td><button class="minus" data-name="' +
-        item.name +
-        '" data-part="' +
-        item.part +
-        '">-</button></td><td>' +
-        item.copies +
-        '</td><td><button class="plus" data-name="' +
-        item.name +
-        '" data-part="' +
-        item.part +
-        '">+</button></td>' +
-        '<td>' +
-        item.part +
-        '</td>' +
-        '<td><button class="remove" data-name="' +
-        item.name +
-        '" data-part="' +
-        item.part +
-        '">Remove from Cart</button></td>';
-    });
+    let output = '';
+    if (this.cart.length == 0) {
+      output = '<i>Your cart is empty</i>';
+    } else {
+      output =
+        '<table class="center" id="cart-table"><th>Name</th><th>Price</th><th colspan="3">Copies</th><th>Type</th>';
+      this.cart.forEach((item) => {
+        output +=
+          '<tr>' +
+          '<td>' +
+          item.name +
+          '</td>' +
+          '<td>$' +
+          item.price +
+          '</td><td><button class="minus" data-name="' +
+          item.name +
+          '" data-type="' +
+          item.part +
+          '">-</button></td><td>' +
+          item.copies +
+          '</td><td><button class="plus" data-name="' +
+          item.name +
+          '" data-type="' +
+          item.part +
+          '">+</button></td>' +
+          '<td>' +
+          item.part +
+          '</td>' +
+          '<td><button class="remove" data-name="' +
+          item.name +
+          '" data-type="' +
+          item.part +
+          '">Remove from Cart</button></td>';
+      });
+    }
     return output + '</table>';
   }
 
