@@ -1,5 +1,5 @@
 import { shopCart } from './shopCart.js';
-
+import 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js';
 let shoppingCart = new shopCart();
 
 //Triggers and events
