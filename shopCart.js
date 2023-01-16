@@ -19,10 +19,11 @@ export class shopCart {
   }
 
   cartSearch(name, type) {
+    //Finds the item in the shopping cart and returns the index number
     let i = this.cart.findIndex(
       (cartItem) => cartItem.name === name && cartItem.type == type
     );
-    //Finds the item in the shopping cart and sets the index number
+
     if (i === -1) {
       //In case the item wasn't found
       return;
@@ -32,13 +33,12 @@ export class shopCart {
 
   addToCart(name, type) {
     let item = this.inventorySearch(name, type); //Finds the item in the inventory
-    this.cart.push(inventory[item]);
+    this.cart.push(inventory[item]); //Adds the item to the cart
     this.saveCart();
-    //Adds the item to the end of the cart
   }
 
   removeFromCart(name, type) {
-    let item = this.cartSearch(name, type);
+    let item = this.cartSearch(name, type); //Finds the item in the cart
     this.cart.splice(item, 1);
     //Removes the item from cart based on the index number
     this.saveCart();
@@ -51,7 +51,7 @@ export class shopCart {
   }
 
   addCopies(name, type) {
-    //Adds a copy of the piece
+    //Adds a copy of the piece in the cart
     let item = this.cartSearch(name, type);
     this.cart[item].copies++;
   }
@@ -86,7 +86,8 @@ export class shopCart {
   }
 
   savings() {
-    //Calculates the amount of money saved based on copies
+    /*Calculates the amount of money saved based on
+    the number of copies in the cart and returns the value*/
     let discount = 0;
     let cartTotal = this.sumTotal();
     let copies = this.totalCopies();
@@ -108,6 +109,7 @@ export class shopCart {
   }
 
   salePrice() {
+    //Returns the total sale price by subtracting the discount from the total
     let salePrice = this.sumTotal() - this.savings();
     salePrice = salePrice.toFixed(2);
     //Trim the sale price to be a neat dollar value
@@ -115,8 +117,9 @@ export class shopCart {
   }
 
   displayCart() {
+    /*Displays the cart with item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button*/
     let output = '';
-    if (this.cart.length == 0) {
+    if (this.cart.length === 0) {
       output = '<i>Your cart is empty</i>';
     } else {
       output =
