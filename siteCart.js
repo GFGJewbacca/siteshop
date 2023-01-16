@@ -6,47 +6,96 @@ let shoppingCart = new shopCart();
 $(function () {
   //Triggers and events
 
-  /*Loading the cart
-if (sessionStorage.getItem('shoppingCart') != null) {
-  shoppingCart.loadCart();
-}*/
+  //Loading the cart
+  if (sessionStorage.getItem('shoppingCart') != null) {
+    shoppingCart.loadCart();
+  }
 
   //Adding copies
-  $(document).on('click', '.plus', function () {
+  $('#show-cart').on('click', '.plus', function () {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.addCopies(name, type);
-    shoppingCart.displayCart();
+    displayCart();
   });
   //Removing copies
-  $(document).on('click', '.minus', function () {
+  $('#show-cart').on('click', '.minus', function (event) {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.removeCopies(name, type);
-    shoppingCart.displayCart();
+    displayCart();
   });
   //Adding to the cart
-  $(document).on('click', '.add-to-cart', function () {
+  $('.add-to-cart').click(function () {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.addToCart(name, type);
-    shoppingCart.displayCart();
+    displayCart();
   });
   //Removing from the cart
-  $(document).on('click', '.remove', function () {
+  $('#show-cart').on('click', '.remove', function (event) {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.removeFromCart(name, type);
-    shoppingCart.displayCart();
+    displayCart();
+  });
+  //Clearing the cart
+  $('#show-cart').on('click', '#clear', function (event) {
+    shoppingCart.clearCart();
+    displayCart();
   });
 
   //Open&close the cart
-  $('#openCart').click(function () {
+  $('#openCart').click(function (event) {
     $('#show-cart').slideToggle('slow');
   });
 
-  //Displaying the necessary parts of the cart
-  $('#show-cart').html(shoppingCart.displayCart());
-  $('#savings').html(shoppingCart.savings());
-  $('#total-price').html(shoppingCart.salePrice());
+  function displayCart() {
+    /*Displays the cart with item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button*/
+    let output = '';
+    if (shoppingCart.cart.length === 0) {
+      output = '<h3><i>Your cart is empty</i></h3>';
+    } else {
+      output =
+        '<table id="cart-table"><th>Name</th><th>Price</th><th colspan="3">Copies</th><th>Type</th>';
+      shoppingCart.cart.forEach((item) => {
+        output +=
+          '<tr>' +
+          '<td>' +
+          item.name +
+          '</td>' +
+          '<td>$' +
+          item.price +
+          '</td><td><button class="minus" data-name="' +
+          item.name +
+          '" data-type="' +
+          item.type +
+          '">-</button></td><td>' +
+          item.copies +
+          '</td><td><button class="plus" data-name="' +
+          item.name +
+          '" data-type="' +
+          item.type +
+          '">+</button></td>' +
+          '<td>' +
+          item.type +
+          '</td>' +
+          '<td><button class="remove" data-name="' +
+          item.name +
+          '" data-type="' +
+          item.type +
+          '">X</button></td>';
+      });
+      output +=
+        '</table><br>You saved: <span id="savings"></span><br>' +
+        'Total: <span id="total-price"></span><br>' +
+        '<button class="clear">Clear cart</button>';
+    }
+    //Displaying the necessary parts of the store
+    $('#show-cart').html(output);
+    $('#savings').html(shoppingCart.savings());
+    $('#total-price').html(shoppingCart.salePrice());
+    $('#total-copies').html(shoppingCart.totalCopies());
+  }
+  displayCart();
 });

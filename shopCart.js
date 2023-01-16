@@ -11,8 +11,8 @@ export class shopCart {
       (inventoryItem) =>
         inventoryItem.name === name && inventoryItem.type === type
     );
+    //If item isn't found, returns "undefined" instead of -1
     if (i === -1) {
-      //In case the item wasn't found
       return;
     }
     return i;
@@ -21,20 +21,22 @@ export class shopCart {
   cartSearch(name, type) {
     //Finds the item in the shopping cart and returns the index number
     let i = this.cart.findIndex(
-      (cartItem) => cartItem.name === name && cartItem.type == type
+      (cartItem) => cartItem.name === name && cartItem.type === type
     );
 
-    if (i === -1) {
-      //In case the item wasn't found
-      return;
-    }
     return i;
+    //If item isn't found, returns -1
   }
 
   addToCart(name, type) {
     let item = this.inventorySearch(name, type); //Finds the item in the inventory
-    this.cart.push(inventory[item]); //Adds the item to the cart
-    this.saveCart();
+    //Check to see if the item is already in the cart
+    if (this.cartSearch(inventory[item].name, inventory[item].type) != -1) {
+      alert('The item is already in the cart');
+    } else {
+      this.cart.push(inventory[item]); //Adds the item to the cart
+      this.saveCart();
+    }
   }
 
   removeFromCart(name, type) {
@@ -54,6 +56,7 @@ export class shopCart {
     //Adds a copy of the piece in the cart
     let item = this.cartSearch(name, type);
     this.cart[item].copies++;
+    this.saveCart();
   }
 
   removeCopies(name, type) {
@@ -63,6 +66,7 @@ export class shopCart {
     if (this.cart[item].copies >= 2) {
       this.cart[item].copies--;
     }
+    this.saveCart();
   }
 
   sumTotal() {
@@ -114,46 +118,6 @@ export class shopCart {
     salePrice = salePrice.toFixed(2);
     //Trim the sale price to be a neat dollar value
     return salePrice;
-  }
-
-  displayCart() {
-    /*Displays the cart with item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button*/
-    let output = '';
-    if (this.cart.length === 0) {
-      output = '<i>Your cart is empty</i>';
-    } else {
-      output =
-        '<table class="center" id="cart-table"><th>Name</th><th>Price</th><th colspan="3">Copies</th><th>Type</th>';
-      this.cart.forEach((item) => {
-        output +=
-          '<tr>' +
-          '<td>' +
-          item.name +
-          '</td>' +
-          '<td>$' +
-          item.price +
-          '</td><td><button class="minus" data-name="' +
-          item.name +
-          '" data-type="' +
-          item.type +
-          '">-</button></td><td>' +
-          item.copies +
-          '</td><td><button class="plus" data-name="' +
-          item.name +
-          '" data-type="' +
-          item.type +
-          '">+</button></td>' +
-          '<td>' +
-          item.type +
-          '</td>' +
-          '<td><button class="remove" data-name="' +
-          item.name +
-          '" data-type="' +
-          item.type +
-          '">Remove from Cart</button></td>';
-      });
-    }
-    return output + '</table>';
   }
 
   // Save cart
