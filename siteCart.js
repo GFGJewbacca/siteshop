@@ -51,8 +51,9 @@ $(function () {
   });
 
   function displayCart() {
-    /*Displays the cart with item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button*/
+    /*Displays the cart as a table. Each table row has the item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button. It then appends two buttons to clear the cart and checkout.*/
     let output = '';
+    //Checks to see if there are items in the cart before displaying the table
     if (shoppingCart.cart.length === 0) {
       output = '<h3><i>Your cart is empty</i></h3>';
     } else {
@@ -89,7 +90,8 @@ $(function () {
       output +=
         '</table><br>You saved: <span id="savings"></span><br>' +
         'Total: <span id="total-price"></span><br>' +
-        '<button id="clear">Clear cart</button>';
+        '<button id="clear">Clear cart</button>' +
+        '<input type="submit" value="Checkout">';
     }
     //Displaying the necessary parts of the store
     $('#show-cart').html(output);
