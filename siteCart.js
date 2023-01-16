@@ -89,7 +89,7 @@ $(function () {
       output +=
         '</table><br>You saved: <span id="savings"></span><br>' +
         'Total: <span id="total-price"></span><br>' +
-        '<button class="clear">Clear cart</button>';
+        '<button id="clear">Clear cart</button>';
     }
     //Displaying the necessary parts of the store
     $('#show-cart').html(output);
