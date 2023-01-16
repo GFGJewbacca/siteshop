@@ -5,11 +5,11 @@ export class shopCart {
     this.id = id;
   }
 
-  inventorySearch(name, part) {
+  inventorySearch(name, type) {
     //Searches through the inventory array for the item and returns an index number
     let i = inventory.findIndex(
       (inventoryItem) =>
-        inventoryItem.name === name && inventoryItem.part === part
+        inventoryItem.name === name && inventoryItem.type === type
     );
     if (i === -1) {
       //In case the item wasn't found
@@ -20,7 +20,7 @@ export class shopCart {
 
   cartSearch(name, type) {
     let i = this.cart.findIndex(
-      (cartItem) => cartItem.name === name && cartItem.part === type
+      (cartItem) => cartItem.name === name && cartItem.type == type
     );
     //Finds the item in the shopping cart and sets the index number
     if (i === -1) {
@@ -132,21 +132,21 @@ export class shopCart {
           '</td><td><button class="minus" data-name="' +
           item.name +
           '" data-type="' +
-          item.part +
+          item.type +
           '">-</button></td><td>' +
           item.copies +
           '</td><td><button class="plus" data-name="' +
           item.name +
           '" data-type="' +
-          item.part +
+          item.type +
           '">+</button></td>' +
           '<td>' +
-          item.part +
+          item.type +
           '</td>' +
           '<td><button class="remove" data-name="' +
           item.name +
           '" data-type="' +
-          item.part +
+          item.type +
           '">Remove from Cart</button></td>';
       });
     }

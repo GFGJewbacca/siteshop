@@ -4,34 +4,34 @@ let shoppingCart = new shopCart();
 
 //Triggers and events
 
-//Loading the cart
+/*Loading the cart
 if (sessionStorage.getItem('shoppingCart') != null) {
-  loadCart();
-}
+  shoppingCart.loadCart();
+}*/
 
 //Adding copies
-$('#show-cart').on('click', '.plus', function (event) {
+$('.plus').click(function () {
   let name = $(this).data('name');
   let type = $(this).data('type');
   shoppingCart.addCopies(name, type);
   shoppingCart.displayCart();
 });
 //Removing copies
-$('#show-cart').on('click', '.minus', function (event) {
+$('.minus').click(function () {
   let name = $(this).data('name');
   let type = $(this).data('type');
   shoppingCart.removeCopies(name, type);
   shoppingCart.displayCart();
 });
 //Adding to the cart
-$('#show-cart').on('click', '.add-to-cart', function (event) {
+$('.add-to-cart').click(function () {
   let name = $(this).data('name');
   let type = $(this).data('type');
   shoppingCart.addToCart(name, type);
   shoppingCart.displayCart();
 });
 //Removing from the cart
-$('#show-cart').on('click', '.remove', function (event) {
+$('.remove').click(function () {
   let name = $(this).data('name');
   let type = $(this).data('type');
   shoppingCart.removeFromCart(name, type);
