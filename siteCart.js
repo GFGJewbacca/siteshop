@@ -11,18 +11,26 @@ $(function () {
     shoppingCart.loadCart();
   }
 
-  //Adding copies
+  //+1 copies
   $('#show-cart').on('click', '.plus', function () {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.addCopies(name, type);
     displayCart();
   });
-  //Removing copies
+  //-1 copies
   $('#show-cart').on('click', '.minus', function (event) {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.removeCopies(name, type);
+    displayCart();
+  });
+  //Setting a number of copies to an item
+  $('#show-cart').on('change', '.set', function (event) {
+    let name = $(this).data('name');
+    let type = $(this).data('type');
+    let copies = $(this).attr('value');
+    shoppingCart.setCopies(name, type, copies);
     displayCart();
   });
   //Adding to the cart
@@ -72,8 +80,13 @@ $(function () {
           '" data-type="' +
           item.type +
           '">-</button></td><td>' +
+          '<input type=number class="set" value="' +
           item.copies +
-          '</td><td><button class="plus" data-name="' +
+          '" data-name="' +
+          item.name +
+          '" data-type="' +
+          item.type +
+          '"></td><td><button class="plus" data-name="' +
           item.name +
           '" data-type="' +
           item.type +

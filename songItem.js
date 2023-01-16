@@ -5,6 +5,7 @@ export class songItem {
     this.type = type;
     this.copies = copies;
   }
+  
   locate() {
     /*Returns a file path to the item based on name
       and what kind of piece it is; a solo piece, a choral piece

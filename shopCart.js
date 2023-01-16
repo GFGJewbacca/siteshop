@@ -53,9 +53,16 @@ export class shopCart {
   }
 
   addCopies(name, type) {
-    //Adds a copy of the piece in the cart
+    //Adds a copy of the item in the cart
     let item = this.cartSearch(name, type);
     this.cart[item].copies++;
+    this.saveCart();
+  }
+
+  setCopies(name, type, copies) {
+    //Sets the number of copies for an item in the cart
+    let item = this.cartSearch(name, type);
+    this.cart[item].copies = copies;
     this.saveCart();
   }
 
