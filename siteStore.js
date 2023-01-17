@@ -1,5 +1,4 @@
 import { shopCart } from './shopCart.js';
-import 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js';
 
 let shoppingCart = new shopCart();
 //Making sure the page is ready before executing jQuery code
@@ -29,7 +28,7 @@ $(function () {
   $('#show-cart').on('change', '.set', function (event) {
     let name = $(this).data('name');
     let type = $(this).data('type');
-    let copies = $(this).attr('value');
+    let copies = Number($(this).val());
     shoppingCart.setCopies(name, type, copies);
     displayCart();
   });
@@ -65,41 +64,52 @@ $(function () {
     if (shoppingCart.cart.length === 0) {
       output = '<h3><i>Your cart is empty</i></h3>';
     } else {
+      //Setting up the table and headers: Name, Price, Copies and Type
       output =
         '<table id="cart-table"><th>Name</th><th>Price</th><th colspan="3">Copies</th><th>Type</th>';
       shoppingCart.cart.forEach((item) => {
         output +=
+          //First in the row - name
           '<tr>' +
           '<td>' +
           item.name +
           '</td>' +
+          //Second in the row - item price
           '<td>$' +
           item.price +
-          '</td><td><button class="minus" data-name="' +
+          '</td>' +
+          //Third in the row - remove copies button
+          '<td><button class="minus" data-name="' +
           item.name +
           '" data-type="' +
           item.type +
           '">-</button></td><td>' +
-          '<input type=number class="set" value="' +
+          //Fourth in the row - number of copies form input
+          '<input type=number class="set" size="5" min="1" value="' +
           item.copies +
           '" data-name="' +
           item.name +
           '" data-type="' +
           item.type +
-          '"></td><td><button class="plus" data-name="' +
+          '"></td>' +
+          //Fifth in the row - add copies button
+          '<td><button class="plus" data-name="' +
           item.name +
           '" data-type="' +
           item.type +
           '">+</button></td>' +
-          '<td>' +
+          '<td>' + // Sixth in the row - item type
           item.type +
           '</td>' +
+          //Seventh in the row - remove item button
           '<td><button class="remove" data-name="' +
           item.name +
           '" data-type="' +
           item.type +
           '">X</button></td>';
       });
+      /*CLosing up the table, displaying savings, total price, button for
+      clearing the cart and a checkout button */
       output +=
         '</table><br>You saved: <span id="savings"></span><br>' +
         'Total: <span id="total-price"></span><br>' +
@@ -110,7 +120,8 @@ $(function () {
     $('#show-cart').html(output);
     $('#savings').html(shoppingCart.savings());
     $('#total-price').html(shoppingCart.salePrice());
-    $('#total-copies').html(shoppingCart.totalCopies());
+    $('#total-items').html(shoppingCart.cart.length);
   }
+  //Makes sure the cart always displays.
   displayCart();
 });

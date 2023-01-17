@@ -18,8 +18,8 @@ export class shopCart {
     return i;
   }
 
+  //Finds the item in the shopping cart and returns the index number
   cartSearch(name, type) {
-    //Finds the item in the shopping cart and returns the index number
     let i = this.cart.findIndex(
       (cartItem) => cartItem.name === name && cartItem.type === type
     );
@@ -29,20 +29,23 @@ export class shopCart {
   }
 
   addToCart(name, type) {
-    let item = this.inventorySearch(name, type); //Finds the item in the inventory
+    //Finds the item in the inventory
+    let item = this.inventorySearch(name, type);
     //Check to see if the item is already in the cart
     if (this.cartSearch(inventory[item].name, inventory[item].type) != -1) {
       alert('The item is already in the cart');
     } else {
-      this.cart.push(inventory[item]); //Adds the item to the cart
+      //Adds the item to the cart
+      this.cart.push(inventory[item]);
       this.saveCart();
     }
   }
 
   removeFromCart(name, type) {
-    let item = this.cartSearch(name, type); //Finds the item in the cart
-    this.cart.splice(item, 1);
+    //Finds the item in the cart
+    let item = this.cartSearch(name, type);
     //Removes the item from cart based on the index number
+    this.cart.splice(item, 1);
     this.saveCart();
   }
 
@@ -83,7 +86,8 @@ export class shopCart {
     this.cart.forEach((item) => {
       sum += item.price * item.copies;
     });
-    sum = sum.toFixed(2); //Trim the sum to be a neat dollar value
+    //Trim the sum to be a neat dollar value
+    sum = sum.toFixed(2);
     return sum;
   }
 
@@ -103,17 +107,17 @@ export class shopCart {
     let cartTotal = this.sumTotal();
     let copies = this.totalCopies();
     if (copies >= 12 && copies < 25) {
-      discount = (cartTotal / 100) * 5;
       //5% discount between 12 and 24 copies
+      discount = (cartTotal / 100) * 5;
     } else if (copies >= 25 && copies < 50) {
-      discount = (cartTotal / 100) * 10;
       //10% discount between 25 and 49 copies
+      discount = (cartTotal / 100) * 10;
     } else if (copies >= 50 && copies < 100) {
-      discount = (cartTotal / 100) * 15;
       //15% discount between 50 and 99 copies
+      discount = (cartTotal / 100) * 15;
     } else if (copies >= 100) {
-      discount = (cartTotal / 100) * 20;
       //20% discount at 100+ copies
+      discount = (cartTotal / 100) * 20;
     }
     discount = discount.toFixed(2); //Trim the discount to be a neat dollar value
     return discount;
