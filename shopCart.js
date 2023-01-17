@@ -65,6 +65,10 @@ export class shopCart {
   setCopies(name, type, copies) {
     //Sets the number of copies for an item in the cart
     let item = this.cartSearch(name, type);
+    //Ensures that "copies" can't be 0 or a negative number
+    if (copies < 1) {
+      copies = 1;
+    }
     this.cart[item].copies = copies;
     this.saveCart();
   }
