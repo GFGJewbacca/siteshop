@@ -57,13 +57,9 @@ $(function () {
     $('#show-cart').slideToggle('slow');
   });
 
-  //Displaying item locations
-  $('#locations').click(function () {
-    displayLocations();
-  });
-
   function displayCart() {
     /*Displays the cart as a table, with each cart item set to a new row in the table. Each table row has the item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button. It then appends two buttons to clear the cart and checkout.*/
+
     let output = ''; //Output of the cart table
     let percentOff = ''; //The current percentage of how much the user is saving
     let copies = shoppingCart.totalCopies();
@@ -115,6 +111,7 @@ $(function () {
           item.type +
           '">X</button></td>';
       });
+
       /*CLosing up the table, displaying number of copies,
       savings, total price, and a checkout button */
       output +=
@@ -157,22 +154,28 @@ $(function () {
     $('#percentOff').html(percentOff);
   }
 
-  function displayLocations() {
-    //Takes the items from the cart and outputs download links for each item
+  //Makes sure the cart starts off displayed.
+  displayCart();
+
+  function downloadLinks() {
+    //Takes the items from the cart and outputs download links for each item as a button
+
     let output = '';
-    shoppingCart.cart.forEach((item) => {
+    //Create a new shopping cart for checkout to preserve the initial cart
+    let checkoutCart = new shopCart();
+    //Load the saved cart created upon checkout
+    checkoutCart.cart = JSON.parse(localStorage.getItem('checkoutCart'));
+    //Go through the cart and output download links as buttons
+    checkoutCart.cart.forEach((item) => {
       output +=
-        '<a href="' +
+        '<a class="storebutton" href="' +
         shoppingCart.getLocation(item.name, item.type) +
-        '" download>' +
+        '" download> Download ' +
         item.name +
         ' - ' +
         item.type +
         '</a><br>';
     });
-    $('#show-locations').html(output);
+    $('#show-downloads').html(output);
   }
-
-  //Makes sure the cart starts off displayed.
-  displayCart();
 });

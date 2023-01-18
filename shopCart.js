@@ -27,15 +27,16 @@ export class shopCart {
     return i;
     //If item isn't found, returns -1
   }
-  //Gets the file path of the item in the cart based on type
+
+  //Returns the file path of an item based on name and type
   getLocation(name, type) {
+    let location = '';
     if (type == 'collection') {
       location = `Full scores/${name}.zip`;
     } else {
       location = `Full scores/${name} - ${type}.pdf`;
     }
     return location;
-    
   }
 
   addToCart(name, type) {
