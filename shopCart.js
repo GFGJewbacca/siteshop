@@ -137,11 +137,11 @@ export class shopCart {
 
   // Save cart
   saveCart() {
-    sessionStorage.setItem('shoppingCart', JSON.stringify(this.cart));
+    localStorage.setItem('storeCart', JSON.stringify(this.cart));
   }
 
   // Load cart
   loadCart() {
-    this.cart = JSON.parse(sessionStorage.getItem('shoppingCart'));
+    this.cart = JSON.parse(localStorage.getItem('storeCart'));
   }
 }

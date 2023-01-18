@@ -6,7 +6,7 @@ $(function () {
   //Triggers and events
 
   //Loading the cart
-  if (sessionStorage.getItem('shoppingCart') != null) {
+  if (localStorage.getItem('storeCart') != null) {
     shoppingCart.loadCart();
   }
 
@@ -57,12 +57,10 @@ $(function () {
     $('#show-cart').slideToggle('slow');
   });
 
-  //Makes the discount more visible in the cart when active
-
   function displayCart() {
-    /*Displays the cart as a table. Each table row has the item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button. It then appends two buttons to clear the cart and checkout.*/
-    let output = '';
-    let percentOff = '';
+    /*Displays the cart as a table, with each cart item set to a new row in the table. Each table row has the item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button. It then appends two buttons to clear the cart and checkout.*/
+    let output = ''; //Output of the cart table
+    let percentOff = ''; //The current percentage of how much the user is saving
     let copies = shoppingCart.totalCopies();
     //Checks to see if there are items in the cart before displaying the table
     if (shoppingCart.cart.length === 0) {
@@ -89,7 +87,7 @@ $(function () {
           item.type +
           '">-</button></td><td>' +
           //Fourth in the row - number of copies form input
-          '<input type=number class="set" size="5" min="1" value="' +
+          '<input type=text class="set" size="3" value="' +
           item.copies +
           '" data-name="' +
           item.name +
@@ -115,13 +113,18 @@ $(function () {
       /*CLosing up the table, displaying number of copies,
       savings, total price, and a checkout button */
       output +=
+        //Number of copies
         '</table><br><span class="cartEnder">Copies: </span>' +
         '<span id="total-copies"></span><br>' +
+        //How much the user has saved in $
         '<span class="cartEnder">You saved: </span>' +
         '<span id="savings"></span> ' +
+        //Current percentage the user is saving
         '<span id="percentOff" class="important"></span> <br>' +
         '<span class="cartEnder">Total: </span>' +
+        //User's shopping cart total
         '<span id="total-price"></span><br>' +
+        //Checkout button
         '<input type="submit" id="checkout" value="Checkout">';
 
       /*Displays the percentage the user is saving based on number of
@@ -140,7 +143,7 @@ $(function () {
         percentOff = '20% discount';
       }
     }
-    //Displaying the necessary parts of the store
+    //Displaying the necessary parts of the cart and store
     $('#show-cart').html(output);
     $('#savings').html(shoppingCart.savings());
     $('#total-price').html(shoppingCart.salePrice());
@@ -148,6 +151,6 @@ $(function () {
     $('#total-copies').html(shoppingCart.totalCopies());
     $('#percentOff').html(percentOff);
   }
-  //Makes sure the cart always displays.
+  //Makes sure the cart starts off displayed.
   displayCart();
 });
