@@ -7,4 +7,4 @@ import './siteStore.js';
 /*let appDiv = document.getElementById('tester');
 let shoppingCart = new shopCart();
 shoppingCart.addToCart('Ahavat Olam', 'solo');
-appDiv.innerHTML = shoppingCart.cart[0].name; */
+appDiv.innerHTML = shoppingCart.getLocation('Ahavat Olam', 'solo');*/

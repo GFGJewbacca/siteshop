@@ -53,8 +53,13 @@ $(function () {
   });
 
   //Open&close the cart
-  $('#openCart').click(function (event) {
+  $('#openCart').click(function () {
     $('#show-cart').slideToggle('slow');
+  });
+
+  //Displaying item locations
+  $('#locations').click(function () {
+    displayLocations();
   });
 
   function displayCart() {
@@ -151,6 +156,23 @@ $(function () {
     $('#total-copies').html(shoppingCart.totalCopies());
     $('#percentOff').html(percentOff);
   }
+
+  function displayLocations() {
+    //Takes the items from the cart and outputs download links for each item
+    let output = '';
+    shoppingCart.cart.forEach((item) => {
+      output +=
+        '<a href="' +
+        shoppingCart.getLocation(item.name, item.type) +
+        '" download>' +
+        item.name +
+        ' - ' +
+        item.type +
+        '</a><br>';
+    });
+    $('#show-locations').html(output);
+  }
+
   //Makes sure the cart starts off displayed.
   displayCart();
 });

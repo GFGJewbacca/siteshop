@@ -27,6 +27,12 @@ export class shopCart {
     return i;
     //If item isn't found, returns -1
   }
+  //Gets the file path of the item in the cart
+  getLocation(name, type) {
+    let item = this.cartSearch(name, type);
+    let location = this.cart[item].locate();
+    return location;
+  }
 
   addToCart(name, type) {
     //Finds the item in the inventory

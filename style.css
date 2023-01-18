@@ -490,7 +490,7 @@ button.storebutton {
     #38a0cc 75%,
     #3488ac 100%
   );
-  background: -o-linear-gradient(top, #62cde4 0%, #38a0cc 75%, #3488ac 100%);
+  background: -o-linear-gradient(top, #38a0cc 0%, #38a0cc 75%, #3488ac 100%);
   background: -ms-linear-gradient(top, #62cde4 0%, #38a0cc 75%, #3488ac 100%);
   background: linear-gradient(to bottom, #62cde4 0%, #38a0cc 75%, #3488ac 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#62cde4', endColorstr='#3488ac', GradientType=0 );
@@ -520,14 +520,14 @@ caption {
 }
 
 td.cartitem {
-  text-align: center;
+  text-align: left;
   font-size: 1em;
   line-height: 1em;
   font-weight: normal;
 }
 #openCart {
-  background-color: #0080ff;
-  color: white;
+  background-color: #eeee00;
+  color: black;
   font-weight: bold;
   border-radius: 8px;
   padding: 3px 10px;
