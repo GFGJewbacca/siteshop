@@ -1,6 +1,6 @@
 import { shopItem } from './shopItem.js';
 let inventory = [
-  new shopItem('Ahavat Olam', 4.0, 'solo', 1)(),
+  new shopItem('Ahavat Olam', 4.0, 'solo', 1),
   new shopItem('Barchu', 4.0, 'solo', 1),
   new shopItem(`L'cha Dodi`, 4.0, 'solo', 1),
   new shopItem(`L'chu N'ran'na`, 4.0, 'solo', 1),
