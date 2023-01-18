@@ -1,4 +1,4 @@
-import { inventory, songItem } from './inventory.js';
+import { inventory } from './inventory.js';
 export class shopCart {
   constructor(id) {
     this.cart = [];
@@ -27,11 +27,15 @@ export class shopCart {
     return i;
     //If item isn't found, returns -1
   }
-  //Gets the file path of the item in the cart
+  //Gets the file path of the item in the cart based on type
   getLocation(name, type) {
-    let item = this.cartSearch(name, type);
-    let location = this.cart[item].locate();
+    if (type == 'collection') {
+      location = `Full scores/${name}.zip`;
+    } else {
+      location = `Full scores/${name} - ${type}.pdf`;
+    }
     return location;
+    
   }
 
   addToCart(name, type) {
