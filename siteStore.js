@@ -1,6 +1,57 @@
 import { shopCart } from './shopCart.js';
 
 let shoppingCart = new shopCart();
+
+////////////////////////////////////////
+//Paypal funcionality
+////////////////////////////////////////
+
+const paypalButtonsComponent = paypal.Buttons({
+  // optional styling for buttons
+  // https://developer.paypal.com/docs/checkout/standard/customize/buttons-style-guide/
+  style: {
+    color: 'gold',
+    shape: 'pill',
+    layout: 'horizontal',
+  },
+
+  // set up the transaction
+  createOrder: (data, actions) => {
+    // pass in any options from the v2 orders create call:
+    // https://developer.paypal.com/api/orders/v2/#orders-create-request-body
+    const createOrderPayload = {
+      purchase_units: [
+        {
+          amount: {
+            value: shoppingCart.salePrice(),
+          },
+        },
+      ],
+    };
+
+    return actions.order.create(createOrderPayload);
+  },
+
+  // finalize the transaction
+  onApprove: (data, actions) => {
+    const captureOrderHandler = (details) => {
+      const payerName = details.payer.name.given_name;
+      console.log('Transaction completed');
+      window.location.href = 'downloads.html';
+    };
+
+    return actions.order.capture().then(captureOrderHandler);
+  },
+
+  // handle unrecoverable errors
+  onError: (err) => {
+    console.error('An error prevented the buyer from checking out with PayPal');
+  },
+});
+paypalButtonsComponent.render('#paypal-button-container').catch((err) => {
+  console.error('PayPal Buttons failed to render');
+});
+
 //Making sure the page is ready before executing jQuery code
 $(function () {
   //Triggers and events
@@ -11,21 +62,21 @@ $(function () {
   }
 
   //+1 copies
-  $('#show-cart').on('click', '.plus', function () {
+  $('#cart-window').on('click', '.plus', function () {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.addCopies(name, type);
     displayCart();
   });
   //-1 copies
-  $('#show-cart').on('click', '.minus', function (event) {
+  $('#cart-window').on('click', '.minus', function (event) {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.removeCopies(name, type);
     displayCart();
   });
   //Setting a number of copies to an item
-  $('#show-cart').on('change', '.set', function (event) {
+  $('#cart-window').on('change', '.set', function (event) {
     let name = $(this).data('name');
     let type = $(this).data('type');
     let copies = Number($(this).val());
@@ -40,7 +91,7 @@ $(function () {
     displayCart();
   });
   //Removing from the cart
-  $('#show-cart').on('click', '.remove', function (event) {
+  $('#cart-window').on('click', '.remove', function (event) {
     let name = $(this).data('name');
     let type = $(this).data('type');
     shoppingCart.removeFromCart(name, type);
@@ -65,7 +116,9 @@ $(function () {
     let copies = shoppingCart.totalCopies();
     //Checks to see if there are items in the cart before displaying the table
     if (shoppingCart.cart.length === 0) {
-      output = '<h3><i>Your cart is empty</i></h3>';
+      output =
+        '<h3><i>Your cart is empty</i></h3><br>' +
+        '<div id="paypal-button-container"></div>';
     } else {
       //Setting up the table and headers: Name, Price, Copies and Type
       output =
@@ -125,9 +178,7 @@ $(function () {
         '<span id="percentOff" class="important"></span> <br>' +
         '<span class="cartEnder">Total: </span>' +
         //User's shopping cart total
-        '<span id="total-price"></span><br>' +
-        //Checkout button
-        '<input type="submit" id="checkout" value="Checkout">';
+        '<span id="total-price"></span><br>';
 
       /*Displays the percentage the user is saving based on number of
         the number of copies in the cart*/
@@ -146,7 +197,7 @@ $(function () {
       }
     }
     //Displaying the necessary parts of the cart and store
-    $('#show-cart').html(output);
+    $('#cart-window').html(output);
     $('#savings').html(shoppingCart.savings());
     $('#total-price').html(shoppingCart.salePrice());
     $('#total-items').html(shoppingCart.cart.length);
@@ -164,7 +215,7 @@ $(function () {
     //Create a new shopping cart for checkout to preserve the initial cart
     let checkoutCart = new shopCart();
     //Load the saved cart created upon checkout
-    checkoutCart.cart = JSON.parse(localStorage.getItem('checkoutCart'));
+    checkoutCart.cart = JSON.parse(localStorage.getItem('storeCart'));
     //Go through the cart and output download links as buttons
     checkoutCart.cart.forEach((item) => {
       output +=

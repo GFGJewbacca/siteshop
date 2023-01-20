@@ -9,3 +9,4 @@ let shoppingCart = new shopCart();
 shoppingCart.addToCart('Ahavat Olam', 'solo');
 appDiv.innerHTML = shoppingCart.getLocation('Ahavat Olam', 'solo');*/
 
+
