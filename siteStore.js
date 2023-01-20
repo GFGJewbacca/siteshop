@@ -12,7 +12,8 @@ const paypalButtonsComponent = paypal.Buttons({
   style: {
     color: 'gold',
     shape: 'pill',
-    layout: 'horizontal',
+    layout: 'vertical',
+    tagline: 'false',
   },
 
   // set up the transaction
@@ -109,17 +110,21 @@ $(function () {
   });
 
   function displayCart() {
-    /*Displays the cart as a table, with each cart item set to a new row in the table. Each table row has the item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button. It then appends two buttons to clear the cart and checkout.*/
+    /*Displays the cart as a table, with each cart item set to a new row in the table. Each table row has the item name, the price, the number of copies with buttons to add and remove copies, the item type and a remove from cart button.*/
 
     let output = ''; //Output of the cart table
     let percentOff = ''; //The current percentage of how much the user is saving
     let copies = shoppingCart.totalCopies();
     //Checks to see if there are items in the cart before displaying the table
-    if (shoppingCart.cart.length === 0) {
+    if (shoppingCart.cart.length == 0) {
+      //Hides the Paypal buttons with an empty cart
+      $('#paypal-button-container').css('display', 'none');
       output =
         '<h3><i>Your cart is empty</i></h3><br>' +
         '<div id="paypal-button-container"></div>';
     } else {
+      //Displays the Paypal buttons when items are in the cart
+      $('#paypal-button-container').css('display', 'block');
       //Setting up the table and headers: Name, Price, Copies and Type
       output =
         '<table id="cart-table"><th>Name</th><th>Price</th><th colspan="3">Copies</th><th>Type</th>';
