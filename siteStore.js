@@ -90,6 +90,8 @@ $(function () {
     let type = $(this).data('type');
     shoppingCart.addToCart(name, type);
     displayCart();
+    //Displays the Paypal buttons when items are in the cart
+    $('#paypal-button-container').css('display', 'block');
   });
   //Removing from the cart
   $('#cart-window').on('click', '.remove', function (event) {
@@ -123,8 +125,6 @@ $(function () {
         '<h3><i>Your cart is empty</i></h3><br>' +
         '<div id="paypal-button-container"></div>';
     } else {
-      //Displays the Paypal buttons when items are in the cart
-      $('#paypal-button-container').css('display', 'block');
       //Setting up the table and headers: Name, Price, Copies and Type
       output =
         '<table id="cart-table"><th>Name</th><th>Price</th><th colspan="3">Copies</th><th>Type</th>';
