@@ -508,7 +508,6 @@ button.storebutton {
   display: none;
 }
 
-
 td {
   text-align: center;
   font-size: 1.1em;
@@ -521,12 +520,17 @@ caption {
   text-align: center;
 }
 
-td.cartitem {
-  text-align: left;
-  font-size: 1em;
+#cart-table td {
+  text-align: center;
+  font-size: 1.1em;
   line-height: 1em;
   font-weight: normal;
 }
+
+#cart-table th {
+  text-align: center;
+}
+
 #openCart {
   background-color: #eeee00;
   color: black;
@@ -551,13 +555,8 @@ td.cartitem {
   padding: 3px 10px;
 }
 
-#checkout {
-  background-color: #29a329;
-  color: white;
-  border: none;
-  font-weight: bold;
-  border-radius: 8px;
-  padding: 3px 10px;
+#paypal-button-container {
+  max-width: 300px;
 }
 
 .important {

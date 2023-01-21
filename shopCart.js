@@ -155,4 +155,24 @@ export class shopCart {
   loadCart() {
     this.cart = JSON.parse(localStorage.getItem('storeCart'));
   }
+
+  downloadLinks() {
+    //Takes the items from the cart and outputs download links for each item as a button
+
+    let output = '';
+    //Load the saved cart created upon checkout
+    this.cart = JSON.parse(sessionStorage.getItem('checkoutCart'));
+    //Go through the cart and output download links as buttons
+    this.cart.forEach((item) => {
+      output +=
+        '<a class="storebutton" href="' +
+        this.getLocation(item.name, item.type) +
+        '" download> Download ' +
+        item.name +
+        ' - ' +
+        item.type +
+        '</a><br>';
+    });
+    return output;
+  }
 }

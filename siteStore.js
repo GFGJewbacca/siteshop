@@ -38,6 +38,8 @@ const paypalButtonsComponent = paypal.Buttons({
     const captureOrderHandler = (details) => {
       const payerName = details.payer.name.given_name;
       console.log('Transaction completed');
+      //Take the items from the cart and store them to be retrieved by the download page
+      sessionStorage.setItem('checkoutCart', JSON.stringify(shoppingCart.cart));
       window.location.href = 'downloads.html';
     };
 
@@ -49,6 +51,7 @@ const paypalButtonsComponent = paypal.Buttons({
     console.error('An error prevented the buyer from checking out with PayPal');
   },
 });
+//Render the buttons
 paypalButtonsComponent.render('#paypal-button-container').catch((err) => {
   console.error('PayPal Buttons failed to render');
 });
@@ -132,15 +135,15 @@ $(function () {
         output +=
           //First in the row - name
           '<tr>' +
-          '<td class="cartitem">' +
+          '<td>' +
           item.name +
           '</td>' +
           //Second in the row - item price
-          '<td class="cartitem">$' +
+          '<td>$' +
           item.price +
           '</td>' +
           //Third in the row - remove copies button
-          '<td class="cartitem"><button class="minus" data-name="' +
+          '<td><button class="minus" data-name="' +
           item.name +
           '" data-type="' +
           item.type +
@@ -154,16 +157,16 @@ $(function () {
           item.type +
           '"></td>' +
           //Fifth in the row - add copies button
-          '<td class="cartitem"><button class="plus" data-name="' +
+          '<td><button class="plus" data-name="' +
           item.name +
           '" data-type="' +
           item.type +
           '">+</button></td>' +
-          '<td class="cartitem">' + // Sixth in the row - item type
+          '<td>' + // Sixth in the row - item type
           item.type +
           '</td>' +
           //Seventh in the row - remove item button
-          '<td class="cartitem"><button class="remove" data-name="' +
+          '<td><button class="remove" data-name="' +
           item.name +
           '" data-type="' +
           item.type +
@@ -212,26 +215,4 @@ $(function () {
 
   //Makes sure the cart starts off displayed.
   displayCart();
-
-  function downloadLinks() {
-    //Takes the items from the cart and outputs download links for each item as a button
-
-    let output = '';
-    //Create a new shopping cart for checkout to preserve the initial cart
-    let checkoutCart = new shopCart();
-    //Load the saved cart created upon checkout
-    checkoutCart.cart = JSON.parse(localStorage.getItem('storeCart'));
-    //Go through the cart and output download links as buttons
-    checkoutCart.cart.forEach((item) => {
-      output +=
-        '<a class="storebutton" href="' +
-        shoppingCart.getLocation(item.name, item.type) +
-        '" download> Download ' +
-        item.name +
-        ' - ' +
-        item.type +
-        '</a><br>';
-    });
-    $('#show-downloads').html(output);
-  }
 });
