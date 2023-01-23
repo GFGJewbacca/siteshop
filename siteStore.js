@@ -40,6 +40,11 @@ const paypalButtonsComponent = paypal.Buttons({
       console.log('Transaction completed');
       //Take the items from the cart and store them to be retrieved by the download page
       sessionStorage.setItem('checkoutCart', JSON.stringify(shoppingCart.cart));
+      //Store the buyer's name to be retrieved by the download page
+      sessionStorage.setItem('buyerName', JSON.stringify(payerName));
+      //Clear the cart after purchase
+      shoppingCart.clearCart();
+      //Direct the buyer to the download page
       window.location.href = 'downloads.html';
     };
 

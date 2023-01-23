@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--scripts for store -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+    ></script>
+    <script src="./shopCart.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+    <script>
+      //Create the checkout cart
+      let checkoutCart = new shopCart();
+      let buyer = JSON.parse(sessionStorage.getItem('buyerName'));
+      let downloads = checkoutCart.downloadLinks();
+      //Make sure the page is ready before using jQuery
+
+      //Display the buyer's name
+      $('#show-buyer').html(buyer);
+      //Display the download links
+      $('#show-downloads').html(downloads);
+    </script>
+    <!-- ends scripts for store -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Cantor Rick Lawrence</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="Description"
+      lang="en"
+      content="open source x/html and css templates"
+    />
+    <meta
+      name="description"
+      lang="en"
+      content="Homepage, Sheet music store, Recordings, Divrei Torah and Resume for Cantor Rick Lawrence"
+    />
+    <meta name="author" content="mlp design" />
+    <meta name="author" content="Cantor Rick Lawrence" />
+    <meta name="robots" content="index, follow" />
+    <meta
+      name="keywords"
+      content="Jewish music, Judaism, Jewish, Cantor, Rick, Lawrence, Resume, Sheet Music"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!--start wrapper-->
+    <div id="wrapper">
+      <!--start body-->
+      <div id="body">
+        <!--start header-->
+        <div id="banner">
+          <div id="coverphoto">
+            <img src="headshot.jpg" title="headshot" alt="headshot" />
+          </div>
+          <h1>Cantor Rick Lawrence <em>M.J.Ed</em></h1>
+          <h5>
+            <em
+              >“It is not upon you to finish the work, and neither are you free
+              to abstain from it.” <br /><br />-Pirkei Avot 2:16</em
+            >
+          </h5>
+          <!-- menu -->
+          <label for="show-menu" class="responsive">&#9776;</label>
+          <input type="checkbox" id="show-menu" role="button" />
+          <ul id="topnav">
+            <li><a href="index.html">About me</a></li>
+            <li><a href="recordings.html">Recordings</a></li>
+            <li><a class="active">Sheet music</a></li>
+            <li><a href="divreitorah.html">Divrei Torah</a></li>
+            <li><a href="contactresume.html">Contact and Resume</a></li>
+          </ul>
+          <!-- end menu -->
+        </div>
+        <!--start containter-->
+        <div id="container">
+          <!--start content-->
+          <div id="content">
+            <p>
+              Thank you for your purchase, <span id="show-buyer"></span>!<br />
+              You will find download links below. <br />
+              If there are any issues, please use the contact form
+              <a href="contactresume.html">here.</a>
+            </p>
+            <div id="show-downloads"></div>
+          </div>
+          <!--end of content-->
+        </div>
+        <!--end of container-->
+      </div>
+      <!--end of body-->
+      <!--start footer-->
+      <div id="footer">
+        <span class="left">
+          &copy; 2022 Cantor Rick Lawrence. All rights reserved.
+          <a href="https://pngtree.com/so/Social"
+            >Social png from pngtree.com/</a
+          ></span
+        >
+        <span class="right"
+          ><!-- <a href="mailto:cantor.rick.lawrence@gmail.com">Contact</a>  | -->
+          <a href="sitemap.html">Site Map</a></span
+        >
+        <p class="show-footer">
+          &copy; 2022 Cantor Rick Lawrence. All rights reserved.<br /><!-- <a href="mailto:cantor.rick.lawrence@gmail.com">Contact</a>  |-->
+          <a href="sitemap.html">Site Map</a>
+        </p>
+      </div>
+      <!--end of footer-->
+    </div>
+    <!--end of wrapper-->
+    <!--start credits-->
+    <!--//Under CC-NC 3.0, this portion must be left intact and must not be hidden.//-->
+    <div id="credits">
+      <span
+        ><a
+          href="http://www.mlpdesign.net"
+          title="CSS &amp; HTML by MLP Design.net"
+          >CSS &amp; HTML</a
+        >
+        by MLP Design<br />Licensed under
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/"
+          >Creative Commons Attribution-NonCommercial 3.0</a
+        >.</span
+      >
+    </div>
+
+    <!--end of credits-->
+  </body>
+</html>
